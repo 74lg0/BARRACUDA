@@ -25,7 +25,6 @@ def clear_console():
 def make_request(url, user_agent):
     headers = {'User-Agent': user_agent}
     response = requests.get(url, headers=headers, timeout=1)
-    # Asumiendo que deseas ver el código de estado de la respuesta:
     print(f"Response Code: {response.status_code}")
 
 def main(url):

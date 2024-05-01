@@ -4,13 +4,13 @@ BARRACUDA.py es un software diseñado para realizar pruebas de denegación de se
 **Para realizar solicitudes mediante la red TOR es necesario tener abierto el navegador para que este reciba las solicitudes y las envie, otra cosa que tengo que aclarar es que es demasiado lento en enviar y recibir las solicitudes**
 ## Estadisticas de https://ddos-barracuda-test.blogspot.com/
 ### Numero de Visitas
-![image](https://github.com/74lg0/BARRACUDA/assets/111157836/2894b14b-5c6a-4add-9058-d4ff535474f8)
+![image](https://github.com/74lg0/BARRACUDA/assets/111157836/d7daf20d-59f9-4b4a-aedb-bd979338d72d)
 
 ### Sistemas Operativos y Navegadores
-![image](https://github.com/74lg0/BARRACUDA/assets/111157836/a9792d6e-05fb-4e57-80cc-8bfc31b67318)
+![image](https://github.com/74lg0/BARRACUDA/assets/111157836/61cd17d3-722c-42d0-a243-28e9e860a62a)
 
 ### Conexiones por pais
-![image](https://github.com/74lg0/BARRACUDA/assets/111157836/49e741e3-eb96-4387-996d-bcf2ba3e948d)
+![image](https://github.com/74lg0/BARRACUDA/assets/111157836/e76f6444-e82e-4622-af75-5b629eea172f)
 
 ## Conxiones mediante Tor
 ![DoS-Barracuda](https://github.com/74lg0/BARRACUDA/assets/111157836/23cf5026-88e9-4427-be00-3228c543effe)

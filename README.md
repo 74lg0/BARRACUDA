@@ -1,7 +1,7 @@
 # BARRACUDA
 BARRACUDA.py es un software diseñado para realizar pruebas de denegación de servicio (DoS) mediante ataques HTTP-Flood. Utiliza una variedad de User-Agents y ofrece una opción de anonimato a través de la red TOR. El programa ejecuta múltiples hilos de solicitudes simultáneamente utilizando la biblioteca threading.
 
-**Para realizar solicitudes mediante la red TOR es necesario tener abierto el navegador para que este reciba las solicitudes y las envie, otra cosa que tengo que aclarar es que es demasiado lento en enviar y recibir las solicitudes**
+**Para realizar solicitudes mediante la red TOR es necesario tener abierta una instancia para que este reciba las solicitudes y las envie, otra cosa que tengo que aclarar es que es demasiado lento en enviar y recibir las solicitudes**
 ## Estadisticas de https://ddos-barracuda-test.blogspot.com/
 ### Numero de Visitas
 ![image](https://github.com/74lg0/BARRACUDA/assets/111157836/d7daf20d-59f9-4b4a-aedb-bd979338d72d)
@@ -14,6 +14,15 @@ BARRACUDA.py es un software diseñado para realizar pruebas de denegación de se
 
 ## Conxiones mediante Tor
 ![DoS-Barracuda](https://github.com/74lg0/BARRACUDA/assets/111157836/23cf5026-88e9-4427-be00-3228c543effe)
+
+# Instalacion en Linux Manualmente
+    sudo apt install tor -y
+    sudo apt install python3 -y
+    pip3 install threading pystyle pysocks
+    pip install requests[socks]
+
+# Instalacion automatica
+    bash install.sh
 
 *I would greatly appreciate it if you could inform me of any errors in the program or possible improvements in my social media:*
 

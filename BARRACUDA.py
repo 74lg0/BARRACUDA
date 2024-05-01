@@ -31,7 +31,7 @@ def make_request(url, user_agent, option):
             response = requests.get(url, headers=headers, timeout=1)
             print(f"Response Code: {response.status_code}")
         elif option == 2:
-            proxies = {'http': 'socks5h://127.0.0.1:9150', 'https': 'socks5h://127.0.0.1:9150'}
+            proxies = {'http': 'socks5h://127.0.0.1:9050', 'https': 'socks5h://127.0.0.1:9050'}
             headers = {'User-Agent': user_agent}
             response = requests.get(url, headers=headers, proxies=proxies, timeout=10)
             print(f'Response Code: {response.status_code}')

@@ -34,9 +34,6 @@ banner ="""
   |||||||||||||||||||||||
   |=====================|
      Create by: 74lg0
-     Github: 74lg0
-     Tiktok: @74lg0
-     Twitter: 74lg0
 """
 
 def clear_console():

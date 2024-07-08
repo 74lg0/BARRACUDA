@@ -43,12 +43,12 @@ def make_request(url, user_agent, option):
     try:
         if option == 1:
             headers = {'User-Agent': user_agent}
-            response = requests.get(url, headers=headers, timeout=1)
+            response = requests.get(url, headers=headers)
             print(f"Response Code: {response.status_code}")
         elif option == 2:
             proxies = {'http': 'socks5h://127.0.0.1:9050', 'https': 'socks5h://127.0.0.1:9050'}
             headers = {'User-Agent': user_agent}
-            response = requests.get(url, headers=headers, proxies=proxies, timeout=10)
+            response = requests.get(url, headers=headers, proxies=proxies)
             print(f'Response Code: {response.status_code}')
     except Exception as e:
         print(Colorate.Horizontal(Colors.green_to_blue, f"Failed to make request to {url}: {str(e)}"))

@@ -12,7 +12,7 @@ BARRACUDA.py es un software diseñado para realizar pruebas de denegación de se
 ### Conexiones por pais
 ![image](https://github.com/74lg0/BARRACUDA/assets/111157836/e76f6444-e82e-4622-af75-5b629eea172f)
 
-## Conxiones mediante Tor
+## Conexiones mediante Tor
 ![DoS-Barracuda](https://github.com/74lg0/BARRACUDA/assets/111157836/23cf5026-88e9-4427-be00-3228c543effe)
 
 # Instalacion en Linux Manualmente

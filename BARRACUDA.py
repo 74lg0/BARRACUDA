@@ -46,7 +46,7 @@ def clear_console():
 
 def ip_server():
     try:
-        proxies = {'http': 'socks5h://127.0.0.1:9150', 'https': 'socks5h://127.0.0.1:9150'}
+        proxies = {'http': 'socks5h://127.0.0.1:9050', 'https': 'socks5h://127.0.0.1:9050'}
         response = requests.get('https://httpbin.org/ip', proxies=proxies, timeout=10)
         ip = response.json().get('origin')
         return ip

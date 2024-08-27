@@ -9,6 +9,7 @@ required_packages=(
 required_pip_packages=(
     "threading"
     "pystyle"
+    "requests"
     "pysocks"
 )
 
@@ -21,7 +22,7 @@ install_package() {
     if [ "$(uname)" == "Darwin" ]; then
         brew install $1
     elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-        sudo apt-get install $1
+        apt-get install $1
     fi
 }
 

@@ -32,6 +32,4 @@ BARRACUDA.py es un software diseñado para realizar pruebas de denegación de se
 
 <img src='https://github.com/74lg0/PyMalwareOS/assets/111157836/c7a9f83c-c9c9-4ca2-a6c7-704ea2512331' height='50' width='50'> *[GitHub] https://github.com/74lg0*
 
-<img src='https://github.com/74lg0/PyMalwareOS/assets/111157836/c7a9f83c-c9c9-4ca2-a6c7-704ea2512331' height='50' width='50'> *[GitHub] https://github.com/74lg0*
-
-*[Discord Server] https://discord.com/channels/1231050275876507668/1231050276559917058*
+<img src='https://github.com/user-attachments/assets/ff97302b-ff94-4068-aee0-ac47676382e2' height='50' width='50'> *[Discord Server] <a href='https://discord.com/channels/1231050275876507668/1231050276559917058'>Discord</a>*

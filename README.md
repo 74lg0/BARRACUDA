@@ -26,10 +26,8 @@ BARRACUDA.py es un software diseñado para realizar pruebas de denegación de se
 
 *I would greatly appreciate it if you could inform me of any errors in the program or possible improvements in my social media:*
 
-<img src='https://github.com/74lg0/PyMalwareOS/assets/111157836/65fb859b-450a-421d-aa8b-fb25c74652c5'  height='50' width='50'> *[Twitter] https://twitter.com/74lg0*
-
-<img src='https://github.com/74lg0/PyMalwareOS/assets/111157836/8e76c3f2-3a23-466b-a965-3816c51e8b34' height='50' width='50'>  *[TikTok] https://tiktok.com/@74lg0*
-
-<img src='https://github.com/74lg0/PyMalwareOS/assets/111157836/c7a9f83c-c9c9-4ca2-a6c7-704ea2512331' height='50' width='50'> *[GitHub] https://github.com/74lg0*
-
-<img src='https://github.com/user-attachments/assets/ff97302b-ff94-4068-aee0-ac47676382e2' height='50' width='50'> *[Discord Server] <a href='https://discord.com/channels/1231050275876507668/1231050276559917058'>Discord</a>*
+[![Twitter](https://img.shields.io/badge/Twitter-%23000000.svg?style=for-the-badge&logo=X&logoColor=white)](https://twitter.com/74lg0)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/74lg0)
+[![TikTok](https://img.shields.io/badge/TikTok-000000?style=for-the-badge&logo=tiktok&logoColor=white)](https://tiktok.com/@74lg0)
+[![Reddit](https://img.shields.io/badge/Reddit-FF4500?style=for-the-badge&logo=reddit&logoColor=white)](https://www.reddit.com/user/Reddebit-)
+[![WhatsApp](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/15878063307)
